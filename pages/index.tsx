@@ -63,8 +63,15 @@ export default function Home() {
               : "주에 한번씩 하는 과외를 통해 수학의 기초를 마스터해보세요."}
           </p>
           <ul className="px-0 lg:px-0 w-full lg:w-max lg:mx-auto flex flex-col items-center gap-y-3.5 lg:gap-y-5">
-            <button
-              type="button"
+            <Link
+              prefetch={false}
+              href={{
+                pathname: "/contact",
+                query: {
+                  type: language.selected === "en" ? "mathematics" : "수학",
+                },
+              }}
+              as={`/contact`}
               className="w-full inline-flex justify-between items-center gap-x-5 px-5 py-3 lg:px-8 lg:py-3.5 bg-blue-700/5 border-2 border-blue-700/25 text-blue-700 lg:hover:bg-blue-700 lg:hover:text-white lg:hover:border-blue-700 font-medium lg:text-lg"
             >
               <span>
@@ -74,9 +81,19 @@ export default function Home() {
               </span>
 
               <HiArrowRight className="text-lg lg:text-xl" />
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              prefetch={false}
+              href={{
+                pathname: "/contact",
+                query: {
+                  type:
+                    language.selected === "en"
+                      ? "computer science"
+                      : "컴퓨터 과학",
+                },
+              }}
+              as={`/contact`}
               className="w-full inline-flex justify-between items-center gap-x-5 px-5 py-3 lg:px-8 lg:py-3.5 bg-teal-700/5 border-2 border-teal-700/25 text-teal-700 lg:hover:bg-teal-700 lg:hover:text-white lg:hover:border-teal-700 font-medium lg:text-lg"
             >
               <span>
@@ -86,7 +103,7 @@ export default function Home() {
               </span>
 
               <HiArrowRight className="text-lg lg:text-xl" />
-            </button>
+            </Link>
           </ul>
         </article>
       </section>
@@ -108,8 +125,8 @@ export default function Home() {
               ? "Introducing Myself."
               : "저를 소개할께요."}
           </h3>
-          <button
-            type="button"
+          <a
+            href="#courses"
             className="w-full inline-flex justify-between items-center gap-x-5 px-5 py-3 lg:px-8 lg:py-3.5 border-2 border-neutral-500 text-netural-500 lg:hover:bg-neutral-800 lg:hover:border-neutral-800 lg:hover:text-white font-medium lg:text-lg uppercase tracking-[0.075rem]"
           >
             <span>
@@ -119,7 +136,7 @@ export default function Home() {
             </span>
 
             <HiArrowRight className="text-lg lg:text-xl" />
-          </button>
+          </a>
         </article>
         <article className="lg:col-span-7 lg:py-16 2xl:py-20 lg:px-16 2xl:px-32 flex flex-col items-start gap-y-5 px-8 md:px-12">
           <p className="text-lg lg:text-xl font-light text-neutral-500 leading-[1.67] lg:leading-[1.67] px-8">
@@ -139,7 +156,7 @@ export default function Home() {
           </p>
         </article>
       </section>
-      <section id="4" className="grid grid-cols-1 md:grid-cols-2 mt-12">
+      <section id="courses" className="grid grid-cols-1 md:grid-cols-2 mt-12">
         <article className="p-8 md:px-12 lg:px-16 2xl:px-32 lg:py-16 bg-blue-700/5 text-blue-700 border-b lg:border-none flex flex-col justify-between">
           <div>
             <h4 className="font-medium text-2xl lg:text-3xl mb-6 lg:mb-10">
