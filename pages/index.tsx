@@ -3,10 +3,10 @@ import { twMerge } from "tailwind-merge";
 import Layout from "~/react/components/Layout";
 import { useLanguage } from "~/react/contexts/Language";
 import { HiArrowDown, HiArrowRight } from "react-icons/hi";
-import { FiCalendar, FiYoutube } from "react-icons/fi";
 import Image from "next/image";
 import Me from "public/me.png";
 import { PiCursorClickBold } from "react-icons/pi";
+import { TfiPencilAlt } from "react-icons/tfi";
 import Link from "next/link";
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
     >
       <section
         id="1"
-        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-4 md:py-5 flex justify-between items-center sticky top-0 z-40 bg-white/90 backdrop-blur-md"
+        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-4 md:py-5 flex justify-between items-center bg-white/90 backdrop-blur-md"
       >
         <h1 className="border-2 w-[35px] h-[35px] lg:w-[40px] lg:h-[40px] border-neutral-800 text-neutral-800 lg:hover:bg-neutral-800 lg:hover:text-white flex justify-center items-center cursor-pointer transform lg:hover:rotate-6">
           <span className="hidden">Tutor With Haneul Choi</span>
@@ -36,15 +36,30 @@ export default function Home() {
         </h1>
         <div className={twMerge(" rounded flex items-center")}>
           <button
-            onClick={() =>
-              language.select(language.selected === "en" ? "ko" : "en")
-            }
+            disabled={language.selected === "en"}
+            onClick={() => language.select("en")}
             type="button"
             className={twMerge(
-              "text-sm font-medium px-2.5 lg:px-3.5 py-0.5 lg:py-1 border border-neutral-800 w-auto h-[35px] block bg-neutral-900 text-white lg:hover:bg-white lg:hover:text-neutral-900"
+              "text-sm font-medium px-1 py-0.5 rounded border w-[35px] h-[35px] block",
+              language.selected === "en"
+                ? "text-white bg-neutral-800"
+                : "lg:hover:bg-blue-400/10 lg:hover:text-blue-400 bg-neutral-100 lg:hover:border-blue-400/25 text-neutral-400 border-transparent "
             )}
           >
-            {language.selected === "en" ? "한국어 보기" : "View in English"}
+            EN
+          </button>
+          <button
+            disabled={language.selected === "ko"}
+            onClick={() => language.select("ko")}
+            type="button"
+            className={twMerge(
+              "text-sm font-medium px-1 py-0.5 rounded border w-[35px] h-[35px] block",
+              language.selected === "ko"
+                ? "text-white bg-neutral-800"
+                : "lg:hover:bg-blue-400/10 lg:hover:text-blue-400 bg-neutral-100 lg:hover:border-blue-400/25 text-neutral-400 border-transparent "
+            )}
+          >
+            KO
           </button>
         </div>
       </section>
@@ -113,7 +128,7 @@ export default function Home() {
         className="bg-white grid grid-cols-1 lg:grid-cols-12 lg:gap-12"
       >
         <article className="lg:col-span-5 flex flex-col justify-center items-center lg:items-start py-10 lg:py-16 2xl:py-20 px-6 md:px-12 lg:px-16 2xl:px-32 bg-white text-neutral-900">
-          <picture className="block mb-3.5 lg:mb-5 max-w-[125px] rounded-full overflow-hidden">
+          <picture className="block mb-3.5 lg:mb-5 max-w-[325px] lg:max-w-[225px] rounded-full overflow-hidden">
             <Image
               src={Me}
               alt="Profile - Haneul Choi Studio"
@@ -214,14 +229,22 @@ export default function Home() {
           </div>
           <div className="mt-6 lg:mt-10">
             <Link
-              href={"/"}
+              prefetch={false}
+              href={{
+                pathname: "/contact",
+                query: {
+                  type: language.selected === "en" ? "mathematics" : "수학",
+                },
+              }}
+              as={"/contact"}
               className="flex items-center gap-x-2.5 lg:gap-x-3.5 lg:text-lg font-medium px-8 py-3.5 bg-blue-700 lg:hover:bg-blue-500 text-white w-full sm:w-max mx-auto lg:mx-0 justify-between "
             >
-              <FiYoutube className="text-lg lg:text-xl" />
+              <TfiPencilAlt className="text-lg lg:text-xl" />
+
               <span>
                 {language.selected === "en"
-                  ? "Watch a Free Session"
-                  : "수학과외 맛보기 영상"}
+                  ? "Try Math Session for Free"
+                  : "수학과외 무료로 체험하기"}
               </span>
             </Link>
           </div>
@@ -274,22 +297,33 @@ export default function Home() {
           </div>
           <div className="mt-6 lg:mt-10">
             <Link
-              href={"/"}
+              prefetch={false}
+              href={{
+                pathname: "/contact",
+                query: {
+                  type:
+                    language.selected === "en"
+                      ? "computer science"
+                      : "컴퓨터 과학",
+                },
+              }}
+              as={"/contact"}
               className="flex items-center gap-x-2.5 lg:gap-x-3.5 lg:text-lg font-medium px-8 py-3.5 bg-teal-700 lg:hover:bg-teal-500 text-white w-full sm:w-max mx-auto lg:mx-0 justify-between "
             >
-              <FiYoutube className="text-lg lg:text-xl" />
+              <TfiPencilAlt className="text-lg lg:text-xl" />
+
               <span>
                 {language.selected === "en"
-                  ? "Watch a Free Session"
-                  : "컴퓨터 과외 맛보기 영상"}
+                  ? "Try CS Session for Free"
+                  : "컴퓨터과외 무료로 체험하기"}
               </span>
             </Link>
           </div>
         </article>
       </section>
       <section
-        id="4"
-        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-10 lg:py-16 2xl:py-20 bg-white border-b"
+        id="5"
+        className="px-8 md:px-12 lg:px-16 2xl:px-32 py-10 lg:py-16 2xl:py-20 bg-white border-b"
       >
         <article className="flex flex-col items-center mb-6 lg:mb-10">
           <h3 className="font-medium text-3xl lg:text-5xl mb-2 lg:mb-3">
@@ -303,33 +337,37 @@ export default function Home() {
               : "학생들이 저의 과외에 대한 피드백들을 남겨주셨습니다."}
           </p>
         </article>
-        <article className="px-8 lg:px-12 max-w-[500px] mx-auto flex flex-col gap-y-5 lg:gap-y-6">
-          <div className="p-6 border">
-            <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
-              Kelley Anderson
-            </h5>
-            <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
-              {language.selected === "en" ? "Linear algebra" : "선형대수학"}
-            </p>
-            <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
-              {language.selected === "en"
-                ? "Out of all the tutors I had, Sky is definitely the teacher if you want to understand math concept. He prepares a lot for us."
-                : "제가 들어본 과외 선생님들 중 컨셉에 대해 이해를 가장 잘 시켜주시는 분이 하늘쌤이에요. 저를 위해 준비를 많이 해주셨어요."}
-            </p>
-          </div>
-          <div className="p-6 border">
-            <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
-              David Kim
-            </h5>
-            <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
-              {language.selected === "en" ? "Web programming" : "웹 프로그래밍"}
-            </p>
-            <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
-              {language.selected === "en"
-                ? "I wanted to change my career into web development. Sky helped me understand internet and general web development efficiently. He prepared practical problems for me to solve."
-                : "현재 직업을 변경하려고 웹개발을 배우고 있는데, 실용적인 문제들을 준비하시고 이해를 시켜주셔서 많이 배우고 있습니다."}
-            </p>
-          </div>
+        <article className="max-w-[500px] mx-auto lg:px-8">
+          <ul className="mb-6 lg:mb-10 flex flex-col px-8 lg:px-0 gap-y-4 lg:gap-y-6">
+            <div className="p-6 border">
+              <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
+                Kelley Anderson
+              </h5>
+              <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
+                {language.selected === "en" ? "Linear algebra" : "선형대수학"}
+              </p>
+              <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
+                {language.selected === "en"
+                  ? "Out of all the tutors I had, Sky is definitely the teacher if you want to understand math concept. He prepares a lot for us."
+                  : "제가 들어본 과외 선생님들 중 컨셉에 대해 이해를 가장 잘 시켜주시는 분이 하늘쌤이에요. 저를 위해 준비를 많이 해주셨어요."}
+              </p>
+            </div>
+            <div className="p-6 border">
+              <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
+                David Kim
+              </h5>
+              <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
+                {language.selected === "en"
+                  ? "Web programming"
+                  : "웹 프로그래밍"}
+              </p>
+              <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
+                {language.selected === "en"
+                  ? "I wanted to change my career into web development. Sky helped me understand internet and general web development efficiently. He prepared practical problems for me to solve."
+                  : "현재 직업을 변경하려고 웹개발을 배우고 있는데, 실용적인 문제들을 준비하시고 이해를 시켜주셔서 많이 배우고 있습니다."}
+              </p>
+            </div>
+          </ul>
           <button
             type="button"
             className="flex justify-between gap-x-5 items-center w-full mx-auto px-8 py-3.5 font-medium lg:text-lg bg-neutral-800 text-white border border-neutral-800 lg:hover:bg-white lg:hover:text-neutral-900"
@@ -340,7 +378,7 @@ export default function Home() {
         </article>
       </section>
       <section
-        id="4"
+        id="6"
         className="px-6 md:px-12 lg:px-16 2xl:px-32 py-10 lg:py-16 2xl:py-20 bg-neutral-50"
       >
         <article className="flex flex-col items-center max-w-[500px] mx-auto">

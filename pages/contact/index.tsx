@@ -76,7 +76,7 @@ export default function Contact({ type }: Props) {
       }
       keywords={"Math Tutor, CS Tutor, Haneul Choi Tutor, LA, OC, Tutor"}
     >
-      <div className="h-screen">
+      <div>
         <header className="px-8 py-4 md:py-5 md:px-12 lg:px-16 2xl:px-32">
           <Link
             href={"/"}
