@@ -365,6 +365,13 @@ export default function Home() {
               }
             />
             <button
+              onClick={() =>
+                alert(
+                  language.selected === "en"
+                    ? "This feature is currently not available. If you have any question, please contact me at haneulchoi.business@gmail.com"
+                    : "이 기능은 현재 개발 중 입니다. 질문이 있으시면 haneulchoi.business@gmail.com로 연락주시기 바랍니다."
+                )
+              }
               type="button"
               className="w-[50px] h-[50px] rounded-lg border flex justify-center items-center bg-neutral-800 text-white border-neutral-800 lg:hover:bg-white lg:hover:text-neutral-800"
             >
