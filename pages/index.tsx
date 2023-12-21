@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import { twMerge } from "tailwind-merge";
 import Layout from "~/react/components/Layout";
 import { useLanguage } from "~/react/contexts/Language";
-import { HiArrowRight } from "react-icons/hi";
+import { HiArrowDown, HiArrowRight } from "react-icons/hi";
 import { FiCalendar, FiYoutube } from "react-icons/fi";
 import Image from "next/image";
 import Me from "public/me.png";
+import { PiCursorClickBold } from "react-icons/pi";
 import Link from "next/link";
 
 export default function Home() {
@@ -26,7 +27,7 @@ export default function Home() {
     >
       <section
         id="1"
-        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-4 md:py-5 flex justify-between items-center sticky top-0 z-40 bg-white/5 backdrop-blur-md"
+        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-4 md:py-5 flex justify-between items-center sticky top-0 z-40 bg-white/90 backdrop-blur-md"
       >
         <h1 className="border-2 w-[35px] h-[35px] lg:w-[40px] lg:h-[40px] border-neutral-800 text-neutral-800 lg:hover:bg-neutral-800 lg:hover:text-white flex justify-center items-center cursor-pointer transform lg:hover:rotate-6">
           <span className="hidden">Tutor With Haneul Choi</span>
@@ -283,6 +284,92 @@ export default function Home() {
                   : "컴퓨터 과외 맛보기 영상"}
               </span>
             </Link>
+          </div>
+        </article>
+      </section>
+      <section
+        id="4"
+        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-10 lg:py-16 2xl:py-20 bg-white border-b"
+      >
+        <article className="flex flex-col items-center mb-6 lg:mb-10">
+          <h3 className="font-medium text-3xl lg:text-5xl mb-2 lg:mb-3">
+            {language.selected === "en"
+              ? "Student Feedbacks"
+              : "학생들의 피드백"}
+          </h3>
+          <p className="text-lg lg:text-xl leading-[1.67] lg:leading-[1.67] text-neutral-500 px-8 text-center">
+            {language.selected === "en"
+              ? "My students left feedbacks about me as shown below."
+              : "학생들이 저의 과외에 대한 피드백들을 남겨주셨습니다."}
+          </p>
+        </article>
+        <article className="px-8 lg:px-12 max-w-[500px] mx-auto flex flex-col gap-y-5 lg:gap-y-6">
+          <div className="p-6 border">
+            <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
+              Kelley Anderson
+            </h5>
+            <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
+              {language.selected === "en" ? "Linear algebra" : "선형대수학"}
+            </p>
+            <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
+              {language.selected === "en"
+                ? "Out of all the tutors I had, Sky is definitely the teacher if you want to understand math concept. He prepares a lot for us."
+                : "제가 들어본 과외 선생님들 중 컨셉에 대해 이해를 가장 잘 시켜주시는 분이 하늘쌤이에요. 저를 위해 준비를 많이 해주셨어요."}
+            </p>
+          </div>
+          <div className="p-6 border">
+            <h5 className="text-lg lg:text-xl font-medium text-neutral-600">
+              David Kim
+            </h5>
+            <p className="w-max text-xs lg:text-sm text-neutral-500 mb-2 lg:mb-3">
+              {language.selected === "en" ? "Web programming" : "웹 프로그래밍"}
+            </p>
+            <p className="text-sm lg:text-base text-neutral-600 leading-[1.67]">
+              {language.selected === "en"
+                ? "I wanted to change my career into web development. Sky helped me understand internet and general web development efficiently. He prepared practical problems for me to solve."
+                : "현재 직업을 변경하려고 웹개발을 배우고 있는데, 실용적인 문제들을 준비하시고 이해를 시켜주셔서 많이 배우고 있습니다."}
+            </p>
+          </div>
+          <button
+            type="button"
+            className="flex justify-between gap-x-5 items-center w-full mx-auto px-8 py-3.5 font-medium lg:text-lg bg-neutral-800 text-white border border-neutral-800 lg:hover:bg-white lg:hover:text-neutral-900"
+          >
+            <span>{language.selected === "en" ? "See More" : "더 보기"}</span>
+            <HiArrowDown />
+          </button>
+        </article>
+      </section>
+      <section
+        id="4"
+        className="px-6 md:px-12 lg:px-16 2xl:px-32 py-10 lg:py-16 2xl:py-20 bg-neutral-50"
+      >
+        <article className="flex flex-col items-center max-w-[500px] mx-auto">
+          <h3 className="font-medium text-2xl lg:text-3xl mb-2 lg:mb-3">
+            {language.selected === "en"
+              ? "Join Our Newletter"
+              : "뉴스레터 구독하기"}
+          </h3>
+          <p className="px-8 lg:px-0 text-neutral-600 text-center mb-5 lg:mb-6">
+            {language.selected === "en"
+              ? "You will get an update about course offering and other promotions."
+              : "새로운 과외 세션 및 프로모션 업데이트를 이메일로 받으실 수 있습니다."}
+          </p>
+          <div className="w-full px-8 flex items-center gap-x-3.5">
+            <input
+              type="text"
+              className="w-full rounded-lg px-4 py-3"
+              placeholder={
+                language.selected === "en"
+                  ? "Enter your email address."
+                  : "이메일을 입력해주세요."
+              }
+            />
+            <button
+              type="button"
+              className="w-[50px] h-[50px] rounded-lg border flex justify-center items-center bg-neutral-800 text-white border-neutral-800 lg:hover:bg-white lg:hover:text-neutral-800"
+            >
+              <PiCursorClickBold className="text-lg lg:text-xl" />
+            </button>
           </div>
         </article>
       </section>
